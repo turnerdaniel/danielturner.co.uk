@@ -10,12 +10,16 @@ const breakpoints = createBreakpoints({
   xl: '80em',
 })
 
-const theme = extendTheme({
+const config = {
+  useSystemColorMode: false,
+  initialColorMode: "dark",
+}
+
+export const theme = extendTheme({
   colors: {
     black: '#16161D',
   },
   fonts,
   breakpoints,
+  config
 })
-
-export default theme
