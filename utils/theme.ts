@@ -15,7 +15,7 @@ const config = {
   initialColorMode: "dark",
 }
 
-const theme = extendTheme({
+export const theme = extendTheme({
   colors: {
     black: '#16161D',
   },
@@ -23,5 +23,3 @@ const theme = extendTheme({
   breakpoints,
   config
 })
-
-export default theme

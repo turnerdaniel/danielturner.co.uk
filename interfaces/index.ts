@@ -4,7 +4,9 @@
 //
 // import User from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
+export type Track = {
+  name: String,
+  artist: String,
+  length: Number,
+  plays: Number
 }
