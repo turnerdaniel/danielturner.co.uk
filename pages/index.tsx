@@ -1,14 +1,12 @@
-import Link from 'next/link'
+import { Heading, Text } from '@chakra-ui/react'
 import { Layout } from '../components/Layout'
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
+  <Layout title="Home | Daniel Turner">
+    <Heading size="2xl" mb={2}>Hi, I'm Daniel Turner 👋</Heading>
+    <Text>
+      This is some text to go underneath the header. Should not be too long but long enough so that the line wraps around. 
+    </Text>
   </Layout>
 )
 
