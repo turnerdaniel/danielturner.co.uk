@@ -1,40 +1,29 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# General ignores
 .DS_Store
-*.pem
+build
+out
+kotlin-js-store
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# IntelliJ ignores
+*.iml
+/*.ipr
 
-# env files (can opt-in for committing if needed)
-.env*
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/gradle.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+/.idea/artifacts
+/.idea/compiler.xml
+/.idea/jarRepositories.xml
+/.idea/*.iml
+/.idea/modules
+/.idea/libraries-with-intellij-classes.xml
 
-# vercel
-.vercel
+# Gradle ignores
+.gradle
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Kotlin ignores
+.kotlin
