@@ -28,8 +28,7 @@ import uk.co.danielturner.portfolio.components.sections.NavHeader
 import uk.co.danielturner.portfolio.toSitePalette
 
 val PageContentStyle = CssStyle {
-    base { Modifier.fillMaxSize().padding(leftRight = 2.cssRem, top = 4.cssRem) }
-    Breakpoint.MD { Modifier.maxWidth(60.cssRem) }
+    base { Modifier.fillMaxSize() }
 }
 
 class PageLayoutData(val title: String)
