@@ -6,7 +6,11 @@ import com.varabyte.kobweb.compose.css.WhiteSpace
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
+import com.varabyte.kobweb.compose.ui.modifiers.padding
+import com.varabyte.kobweb.compose.ui.modifiers.setVariable
+import com.varabyte.kobweb.compose.ui.modifiers.textAlign
+import com.varabyte.kobweb.compose.ui.modifiers.whiteSpace
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
@@ -37,7 +41,7 @@ fun Footer(modifier: Modifier = Modifier) {
                 "https://github.com/varabyte/kobweb",
                 "Kobweb",
                 Modifier.setVariable(ColorVar, sitePalette.brand.primary),
-                variant = UncoloredLinkVariant
+                variant = UncoloredLinkVariant,
             )
             SpanText(", template designed by someone else and not ")
 
@@ -47,7 +51,7 @@ fun Footer(modifier: Modifier = Modifier) {
                 "https://ui-rocket.com",
                 "UI Rocket",
                 Modifier.setVariable(ColorVar, sitePalette.brand.accent).whiteSpace(WhiteSpace.NoWrap),
-                variant = UncoloredLinkVariant
+                variant = UncoloredLinkVariant,
             )
         }
     }

@@ -1,6 +1,11 @@
 package uk.co.danielturner.portfolio.components.sections
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.varabyte.kobweb.browser.dom.ElementTarget
 import com.varabyte.kobweb.compose.css.functions.clamp
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -9,8 +14,19 @@ import com.varabyte.kobweb.compose.foundation.layout.Spacer
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
-import com.varabyte.kobweb.compose.ui.modifiers.*
-import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.compose.ui.modifiers.animation
+import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
+import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxHeight
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.fontSize
+import com.varabyte.kobweb.compose.ui.modifiers.gap
+import com.varabyte.kobweb.compose.ui.modifiers.onAnimationEnd
+import com.varabyte.kobweb.compose.ui.modifiers.onClick
+import com.varabyte.kobweb.compose.ui.modifiers.padding
+import com.varabyte.kobweb.compose.ui.modifiers.setVariable
+import com.varabyte.kobweb.compose.ui.modifiers.translateX
+import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.silk.components.icons.CloseIcon
 import com.varabyte.kobweb.silk.components.icons.HamburgerIcon
 import com.varabyte.kobweb.silk.components.icons.MoonIcon
@@ -31,7 +47,12 @@ import com.varabyte.kobweb.silk.style.breakpoint.displayIfAtLeast
 import com.varabyte.kobweb.silk.style.breakpoint.displayUntil
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.css.AnimationDirection
+import org.jetbrains.compose.web.css.AnimationFillMode
+import org.jetbrains.compose.web.css.AnimationTimingFunction
+import org.jetbrains.compose.web.css.cssRem
+import org.jetbrains.compose.web.css.ms
+import org.jetbrains.compose.web.css.percent
 import uk.co.danielturner.portfolio.components.widgets.IconButton
 import uk.co.danielturner.portfolio.toSitePalette
 
@@ -52,7 +73,7 @@ private fun MenuItems() {
 @Composable
 private fun ColorModeButton() {
     var colorMode by ColorMode.currentState
-    IconButton(onClick = { colorMode = colorMode.opposite },) {
+    IconButton(onClick = { colorMode = colorMode.opposite }) {
         if (colorMode.isLight) MoonIcon() else SunIcon()
     }
     Tooltip(ElementTarget.PreviousSibling, "Toggle color mode", placement = PopupPlacement.BottomRight)
@@ -87,7 +108,8 @@ val SideMenuSlideInAnim = Keyframes {
 enum class SideMenuState {
     CLOSED,
     OPEN,
-    CLOSING;
+    CLOSING,
+    ;
 
     fun close() = when (this) {
         CLOSED -> CLOSED
@@ -111,18 +133,18 @@ fun NavHeader() {
                 .fontSize(1.5.cssRem)
                 .gap(1.cssRem)
                 .displayUntil(Breakpoint.SM),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
 
             ColorModeButton()
-            HamburgerButton(onClick =  { menuState = SideMenuState.OPEN })
+            HamburgerButton(onClick = { menuState = SideMenuState.OPEN })
 
             if (menuState != SideMenuState.CLOSED) {
                 SideMenu(
                     menuState,
                     close = { menuState = menuState.close() },
-                    onAnimationEnd = { if (menuState == SideMenuState.CLOSING) menuState = SideMenuState.CLOSED }
+                    onAnimationEnd = { if (menuState == SideMenuState.CLOSING) menuState = SideMenuState.CLOSED },
                 )
             }
         }
@@ -134,9 +156,10 @@ private fun SideMenu(menuState: SideMenuState, close: () -> Unit, onAnimationEnd
     Overlay(
         Modifier
             .setVariable(OverlayVars.BackgroundColor, Colors.Transparent)
-            .onClick { close() }
+            .onClick { close() },
     ) {
-        key(menuState) { // Force recompute animation parameters when close button is clicked
+        key(menuState) {
+            // Force recompute animation parameters when close button is clicked
             Column(
                 Modifier
                     .fillMaxHeight()
@@ -152,13 +175,13 @@ private fun SideMenu(menuState: SideMenuState, close: () -> Unit, onAnimationEnd
                             duration = 200.ms,
                             timingFunction = if (menuState == SideMenuState.OPEN) AnimationTimingFunction.EaseOut else AnimationTimingFunction.EaseIn,
                             direction = if (menuState == SideMenuState.OPEN) AnimationDirection.Normal else AnimationDirection.Reverse,
-                            fillMode = AnimationFillMode.Forwards
-                        )
+                            fillMode = AnimationFillMode.Forwards,
+                        ),
                     )
                     .borderRadius(topLeft = 2.cssRem)
                     .onClick { it.stopPropagation() }
                     .onAnimationEnd { onAnimationEnd() },
-                horizontalAlignment = Alignment.End
+                horizontalAlignment = Alignment.End,
             ) {
                 CloseButton(onClick = { close() })
                 Column(Modifier.padding(right = 0.75.cssRem).gap(1.5.cssRem).fontSize(1.4.cssRem), horizontalAlignment = Alignment.End) {

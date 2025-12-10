@@ -2,30 +2,26 @@ package uk.co.danielturner.portfolio.components.layouts
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.varabyte.kobweb.compose.dom.svg.*
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.ColumnScope
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.*
-import com.varabyte.kobweb.compose.ui.toAttrs
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.gridRow
+import com.varabyte.kobweb.compose.ui.modifiers.gridTemplateRows
+import com.varabyte.kobweb.compose.ui.modifiers.minHeight
 import com.varabyte.kobweb.core.PageContext
 import com.varabyte.kobweb.core.data.getValue
 import com.varabyte.kobweb.core.layout.Layout
 import com.varabyte.kobweb.silk.style.CssStyle
-import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toAttrs
-import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import kotlinx.browser.document
-import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fr
-import org.jetbrains.compose.web.css.percent
-import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.css.vh
-import uk.co.danielturner.portfolio.components.sections.Footer
+import org.jetbrains.compose.web.dom.Div
 import uk.co.danielturner.portfolio.components.sections.NavHeader
-import uk.co.danielturner.portfolio.toSitePalette
 
 val PageContentStyle = CssStyle {
     base { Modifier.fillMaxSize() }
@@ -51,8 +47,11 @@ fun PageLayout(ctx: PageContext, content: @Composable ColumnScope.() -> Unit) {
             // pushed further down if the first row grows beyond the page.
             // Grids are powerful but have a bit of a learning curve. For more info, see:
             // https://css-tricks.com/snippets/css/complete-guide-grid/
-            .gridTemplateRows { size(1.fr); size(minContent) },
-        contentAlignment = Alignment.Center
+            .gridTemplateRows {
+                size(1.fr)
+                size(minContent)
+            },
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             // Isolate the content, because otherwise the absolute-positioned SVG above will render on top of it.

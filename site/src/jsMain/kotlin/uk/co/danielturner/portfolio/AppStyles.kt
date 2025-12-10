@@ -4,7 +4,16 @@ import com.varabyte.kobweb.compose.css.ScrollBehavior
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
-import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
+import com.varabyte.kobweb.compose.ui.modifiers.color
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
+import com.varabyte.kobweb.compose.ui.modifiers.fontSize
+import com.varabyte.kobweb.compose.ui.modifiers.lineHeight
+import com.varabyte.kobweb.compose.ui.modifiers.padding
+import com.varabyte.kobweb.compose.ui.modifiers.scrollBehavior
+import com.varabyte.kobweb.compose.ui.modifiers.setVariable
+import com.varabyte.kobweb.compose.ui.modifiers.textAlign
 import com.varabyte.kobweb.silk.components.forms.ButtonStyle
 import com.varabyte.kobweb.silk.components.forms.ButtonVars
 import com.varabyte.kobweb.silk.components.layout.HorizontalDividerStyle
@@ -17,7 +26,11 @@ import com.varabyte.kobweb.silk.style.base
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobweb.silk.theme.modifyStyleBase
-import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.css.CSSMediaQuery
+import org.jetbrains.compose.web.css.StylePropertyValue
+import org.jetbrains.compose.web.css.cssRem
+import org.jetbrains.compose.web.css.percent
+import org.jetbrains.compose.web.css.px
 
 @InitSilk
 fun initSiteStyles(ctx: InitSilkContext) {
@@ -34,7 +47,7 @@ fun initSiteStyles(ctx: InitSilkContext) {
         Modifier
             .fontFamily(
                 "Geist", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-                "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif"
+                "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif",
             )
             .fontSize(18.px)
             .lineHeight(1.5)
@@ -50,7 +63,7 @@ val HeadlineTextStyle = CssStyle.base {
     Modifier
         .fontSize(3.cssRem)
         .textAlign(TextAlign.Start)
-        .lineHeight(1.2) //1.5x doesn't look as good on very large text
+        .lineHeight(1.2) // 1.5x doesn't look as good on very large text
 }
 
 val SubheadlineTextStyle = CssStyle.base {

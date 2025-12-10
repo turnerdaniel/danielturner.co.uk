@@ -14,7 +14,7 @@ fun IconButton(onClick: () -> Unit, content: @Composable () -> Unit) {
     Button(
         onClick = { onClick() },
         Modifier.setVariable(ButtonVars.FontSize, 1.em), // Make button icon size relative to parent container font size
-        variant = CircleButtonVariant.then(UncoloredButtonVariant)
+        variant = CircleButtonVariant.then(UncoloredButtonVariant),
     ) {
         content()
     }
