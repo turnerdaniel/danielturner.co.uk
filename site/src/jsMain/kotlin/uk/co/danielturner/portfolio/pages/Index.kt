@@ -9,7 +9,12 @@ import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
-import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.modifiers.background
+import com.varabyte.kobweb.compose.ui.modifiers.backgroundImage
+import com.varabyte.kobweb.compose.ui.modifiers.color
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
+import com.varabyte.kobweb.compose.ui.modifiers.fontSize
+import com.varabyte.kobweb.compose.ui.modifiers.fontWeight
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.data.add
 import com.varabyte.kobweb.core.init.InitRoute
@@ -33,7 +38,7 @@ val TextStyle = CssStyle {
             .fontWeight(FontWeight.Bold)
             .color(Colors.Transparent)
             .backgroundImage(
-                linearGradient(Colors.MediumSeaGreen, Colors.RoyalBlue, LinearGradient.Direction.ToRight)
+                linearGradient(Colors.MediumSeaGreen, Colors.RoyalBlue, LinearGradient.Direction.ToRight),
             )
             .background {
                 clip(BackgroundClip.Text)
@@ -46,8 +51,8 @@ val TextStyle = CssStyle {
                 linearGradient(
                     Colors.HotPink,
                     Colors.GoldenRod,
-                    LinearGradient.Direction.ToRight
-                )
+                    LinearGradient.Direction.ToRight,
+                ),
             )
     }
 }
@@ -63,11 +68,11 @@ fun initHomePage(ctx: InitRouteContext) {
 fun HomePage() {
     Box(
         modifier = HeroContainerStyle.toModifier(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         SpanText(
             text = "Daniel Turner",
-            modifier = TextStyle.toModifier()
+            modifier = TextStyle.toModifier(),
 //                .color(
 //                    when (ColorMode.current) {
 //                        ColorMode.LIGHT -> Colors.Black

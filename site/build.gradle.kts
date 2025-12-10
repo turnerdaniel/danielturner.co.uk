@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kobweb.application)
     alias(libs.plugins.kobwebx.markdown)
+    alias(libs.plugins.spotless)
 }
 
 group = "uk.co.danielturner.portfolio"
@@ -20,7 +21,7 @@ kobweb {
                 link(rel = "preconnect", href = "https://fonts.gstatic.com") { attributes["crossorigin"] = "" }
                 link(
                     href = "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
-                    rel = "stylesheet"
+                    rel = "stylesheet",
                 )
             }
         }
@@ -28,9 +29,7 @@ kobweb {
 }
 
 kotlin {
-    // This example is frontend only. However, for a fullstack app, you can uncomment the includeServer parameter
-    // and the `jvmMain` source set below.
-    configAsKobwebApplication("portfolio" /*, includeServer = true*/)
+    configAsKobwebApplication("portfolio")
 
     sourceSets {
 //        commonMain.dependencies {
@@ -47,10 +46,18 @@ kotlin {
             // implementation(libs.silk.icons.fa)
             implementation(libs.kobwebx.markdown)
         }
+    }
+}
 
-        // Uncomment the following if you pass `includeServer = true` into the `configAsKobwebApplication` call.
-//        jvmMain.dependencies {
-//            compileOnly(libs.kobweb.api) // Provided by Kobweb backend at runtime
-//        }
+spotless {
+    kotlin {
+        target("src/**/*.kt")
+        ktlint("1.8.0")
+            .editorConfigOverride(
+                mapOf("ktlint_code_style" to "intellij_idea"),
+            )
+    }
+    kotlinGradle {
+        ktlint("1.8.0")
     }
 }
