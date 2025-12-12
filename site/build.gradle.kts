@@ -45,6 +45,8 @@ kotlin {
             // Uncomment the following if you want access to a large set of font-awesome icons:
             // implementation(libs.silk.icons.fa)
             implementation(libs.kobwebx.markdown)
+
+            implementation(npm("@vercel/analytics", "1.6.1"))
         }
     }
 }

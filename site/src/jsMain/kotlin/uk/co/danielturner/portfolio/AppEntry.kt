@@ -7,6 +7,8 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.minHeight
 import com.varabyte.kobweb.compose.ui.modifiers.scrollBehavior
 import com.varabyte.kobweb.core.App
+import com.varabyte.kobweb.core.AppGlobals
+import com.varabyte.kobweb.core.isExporting
 import com.varabyte.kobweb.silk.SilkApp
 import com.varabyte.kobweb.silk.components.layout.Surface
 import com.varabyte.kobweb.silk.init.InitSilk
@@ -42,6 +44,13 @@ fun AppEntry(content: @Composable () -> Unit) {
         LaunchedEffect(colorMode) {
             colorMode.saveToLocalStorage(COLOR_MODE_KEY)
         }
+
+        if (AppGlobals.isExporting.not()) {
+            LaunchedEffect(Unit) {
+                inject()
+            }
+        }
+
         Surface(SmoothColorStyle.toModifier().minHeight(100.vh)) {
             content()
         }
