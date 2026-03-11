@@ -29,6 +29,8 @@ kobweb {
 }
 
 kotlin {
+    jvmToolchain(jdkVersion = 21)
+
     configAsKobwebApplication("portfolio")
 
     sourceSets {
