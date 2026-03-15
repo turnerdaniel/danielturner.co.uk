@@ -29,13 +29,11 @@ kobweb {
 }
 
 kotlin {
+    jvmToolchain(jdkVersion = 21)
+
     configAsKobwebApplication("portfolio")
 
     sourceSets {
-//        commonMain.dependencies {
-//          // Add shared dependencies between JS and JVM here if building a fullstack app
-//        }
-
         jsMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.compose.html.core)
